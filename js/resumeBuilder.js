@@ -8,34 +8,72 @@ This is empty on purpose! Your code to build the resume will go here.
 //$("#header").prepend(formatedRole);
 //$("#header").prepend(formatedName);
 
-skills 	= [ " Mainframe Computing", " Cobol", " Microsoft Office", " Web Design", " PHP" ];
-contact1= [ "E-Mail", "bengt@nelander.de"];
-contact2= [ "Mobile", "+49 160 97974154"];
-
 var bio = {
 		"name" 		: "Bengt Nelander",
 		"role" 		: "JavaScript Student",
-		"contact1"	: contact1,
-		"contact2"  : contact2,
-		"picture"	: "bengt.jpg",
+		"contacts"	: { "mobile" 	: "+49 171 123456789",
+						"email"  	: "bengt@xxxxxxxx.de",
+						"location"	: "Munich, Germany",
+		},
+		"picture"	: "images/bengt.jpg",
 		"welcome"	: "Welcome to my very interesting but short resume. It shows that my JavaScript skills are getting better and better ;)",
-		"skills"	: skills
+		"skills"	: [ " Mainframe Computing", " Cobol", " Microsoft Office", " Web Design", " PHP" ]
 };
+
+var work = {};
+work.position 	= "Senior Consultant";
+work.employer 	= "T-Systems";
+work.years  	= 40;
+work.city  		= "Munich, Germany";
+
+//var education = {};
+//education["name"]		= "LTH";
+//education["years"]		= 5;
+//education["location"] 	= "Lund, Sweden";
+
+/* JSON */
+var education =   {
+	  	"schools": [{
+	  		"name": "LTH",
+	  		"city": "Lund",
+	  		"major": ["Electonics", "Measurement", "Cybernetics"],
+	  		"minor": ["Math", "Physics", "Programming"],
+	  		"graduation": 1975
+	  	}, {
+	  		"name": "Udacity.com",
+	  		"city": "Web",
+	  		"major": ["JavaScript", "GitHub", "PHP"],
+	  		"minor": ["JSON", "AJAX"],
+	  		"graduation": 2016
+	  	}],
+	  	"onlinecourses": [{
+	  		"title": "JavaScript",
+	  		"company": "Udacity.com"
+	  	}, {
+	  		"title": "PHP",
+	  		"company": "Some_Other.com"
+	  	}]
+	  }
 
 var formatedName=HTMLheaderName.replace("%data%",bio.name);
 var formatedRole=HTMLheaderRole.replace("%data%",bio.role);
-var formatedContact1=HTMLcontactGeneric.replace("%contact%",bio.contact1[0]);
-formatedContact1=formatedContact1.replace("%data%",bio.contact1[1]);
-var formatedContact2=HTMLcontactGeneric.replace("%contact%",bio.contact2[0]);
-formatedContact2=formatedContact2.replace("%data%",bio.contact2[1]);
 var formatedBioPic=HTMLbioPic.replace("%data%",bio.picture);
 var formatedWelcomeMsg=HTMLwelcomeMsg.replace("%data%",bio.welcome);
 var formatedSkils=HTMLskills.replace("%data%",bio.skills);
 
-$("#header").prepend(formatedSkils);
-$("#header").prepend(formatedWelcomeMsg);
-$("#header").prepend(formatedBioPic);
-$("#header").prepend(formatedContact2);
-$("#header").prepend(formatedContact1);
-$("#header").prepend(formatedRole);
-$("#header").prepend(formatedName);
+$("#header").append(formatedName);
+$("#header").append(formatedRole);
+$("#header").append(formatedBioPic);
+$("#header").append(formatedWelcomeMsg);
+$("#header").append(formatedSkils);
+$("#main").append(work["position"]);
+
+/* Output JSON Objects */
+$("#main").append(education.schools[0].name);
+$("#main").append(education.schools[0].city);
+$("#main").append(education.schools[1].name);
+$("#main").append(education.schools[1].city);
+$("#main").append(education.onlinecourses[0].title);
+$("#main").append(education.onlinecourses[0].company);
+$("#main").append(education.onlinecourses[1].title);
+$("#main").append(education.onlinecourses[1].company);
